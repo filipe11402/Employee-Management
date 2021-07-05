@@ -1,4 +1,5 @@
 using Employee_Management.Database;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Employee_Management
@@ -27,7 +29,10 @@ namespace Employee_Management
         {
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options
-                => options.UseSqlite(@"Data Source=C:\Users\Dominique\Desktop\STUFF\dev\C#\Employee_Management"));
+                => options.UseSqlite(@"Data Source=C:\Users\Dominique\Desktop\STUFF\dev\C#\Employee_Management\EmployeeDb"));
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             services.AddControllersWithViews();
         }
 
